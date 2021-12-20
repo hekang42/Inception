@@ -11,23 +11,24 @@ services:
         networks:
             - intra
         tty: true
-    nginx:
-        image: debian:buster
-        restart: always
-        ports:
-            - "443:443"
-        volumes:
-            - data:/var/www/html
-        networks:
-            - intra
-        tty: true
     wordpress:
-        image: debian:buster
+        #image: debian:buster
+        build: requirements/wordpress/
         restart: always
         volumes:
             - data:/var/www/html
         expose:
             - "9000"
+        networks:
+            - intra
+        tty: true
+    nginx:
+        build: requirements/nginx/
+        restart: always
+        ports:
+            - "443:443"
+        volumes:
+            - data:/var/www/html
         networks:
             - intra
         tty: true
