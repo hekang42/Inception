@@ -4,7 +4,8 @@ volumes:
     data: {}
 services:
     mariadb:
-        image: debian:buster
+        #image: debian:buster
+        build: requirements/mariadb
         restart: always
         expose:
             - "3306"
