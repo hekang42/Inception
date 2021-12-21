@@ -16,12 +16,12 @@ RUN		apt update && apt upgrade && apt install -y \
 RUN		wget https://wordpress.org/latest.tar.gz && \
 			tar -xvf latest.tar.gz
 
-#RUN		mysql -u hekang -ppassword -h mariadb
-
 COPY	./conf/www.conf			./tmp
 COPY	./conf/wp-config.php	./tmp
 COPY	./tools/setup.sh		./
 
 EXPOSE	9000
 
+RUN		service php7.3-fpm start
 CMD		bash setup.sh
+

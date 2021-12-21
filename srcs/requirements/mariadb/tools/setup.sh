@@ -10,5 +10,5 @@ mysql -e "CREATE DATABASE wordpress;"
 mysql -e "CREATE USER 'hekang'@'%' IDENTIFIED BY '1234'";
 mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'hekang'@'%';"
 
-
-/bin/bash
+service mysql stop
+exec mysqld_safe

@@ -9,5 +9,6 @@ COPY	./conf/50-server.cnf	./tmp
 COPY	./tools/setup.sh		./
 
 EXPOSE	3306
-CMD		bash setup.sh
 
+ENTRYPOINT [ "/bin/bash" ]
+CMD		[ "setup.sh" ]

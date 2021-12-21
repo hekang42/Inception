@@ -9,7 +9,4 @@ rm -r /wordpress latest.tar.gz
 cp tmp/wp-config.php				/var/www/html/wp-config.php
 cp tmp/www.conf		/etc/php/7.3/fpm/pool.d/www.conf
 
-service php7.3-fpm start
 php-fpm7.3 --nodaemonize
-
-/bin/bash
