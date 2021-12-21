@@ -1,6 +1,16 @@
 #!/bin/bash
 
-mv tmp/www.conf				/var/www/html/wp-config.php
-mv tmp/wp-config.php		/etc/php/7.3/fpm/pool.d/
 
-wordpress -g "daemon off;"
+mkdir -p /var/www/html && \
+cp -r /wordpress/* /var/www/html/ && \
+chown -R www-data:www-data /var/www/html && \
+#rm -r /wordpress latest.tar.gz
+
+
+cp tmp/wp-config.php				/var/www/html/wp-config.php
+cp tmp/www.conf		/etc/php/7.3/fpm/pool.d/www.conf
+
+service php7.3-fpm start
+php-fpm7.3 --nodaemonize
+
+/bin/bash

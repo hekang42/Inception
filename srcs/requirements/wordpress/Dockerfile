@@ -13,11 +13,7 @@ RUN		apt update && apt install -y \
 			sendmail
 
 RUN		wget https://wordpress.org/latest.tar.gz && \
-			tar -xvf latest.tar.gz && \
-			mkdir -p /var/www/html && \
-			mv /wordpress/* /var/www/html/ && \
-			chown -R www-data:www-data /var/www/html && \
-			rm -r /wordpress latest.tar.gz
+			tar -xvf latest.tar.gz
 
 
 
