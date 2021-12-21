@@ -4,7 +4,6 @@ volumes:
     data: {}
 services:
     mariadb:
-        #image: debian:buster
         build: requirements/mariadb
         restart: always
         expose:
@@ -13,7 +12,6 @@ services:
             - intra
         tty: true
     wordpress:
-        #image: debian:buster
         build: requirements/wordpress/
         restart: always
         volumes:
