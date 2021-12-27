@@ -28,5 +28,6 @@ COPY	./tools/setup.sh		./
 EXPOSE	9000
 
 RUN		service php7.3-fpm start
-CMD		bash setup.sh
+ENTRYPOINT [ "/bin/bash" ]
+CMD		[ "setup.sh" ]
 

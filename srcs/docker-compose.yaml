@@ -18,9 +18,13 @@ services:
             - data:/var/www/html
         expose:
             - "9000"
+        env_file:
+            - .env
         networks:
             - intra
         tty: true
+        depends_on:
+            - mariadb
     nginx:
         build: requirements/nginx/
         restart: always
