@@ -1,5 +1,4 @@
 FROM	debian:buster
-LABEL	maintainer="hekang@student.42seoul.kr"
 
 RUN		apt update && apt install -y \
 		nginx \
@@ -12,4 +11,6 @@ COPY	./conf/default			./tmp
 #COPY	./srcs/config.inc.php	./tmp
 
 EXPOSE	443
-CMD		bash setup.sh
+
+ENTRYPOINT [ "/bin/bash" ]
+CMD		[ "setup.sh" ]
