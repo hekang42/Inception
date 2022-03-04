@@ -5,7 +5,6 @@ RUN		apt update && apt install -y \
 			wget \
 			curl \
 			php-mysql \
-			sendmail \
 			sudo
 
 RUN		wget https://wordpress.org/latest.tar.gz && \

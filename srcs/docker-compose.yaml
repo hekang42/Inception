@@ -1,9 +1,9 @@
-version: '3'
+version: '2'
 
 services:
     mariadb:
         container_name: mariadb
-        build: requirements/mariadb
+        build: "./requirements/mariadb"
         restart: always
         volumes:
             - db:/var/mysql
@@ -14,10 +14,10 @@ services:
         tty: true
     wordpress:
         container_name: wordpress
-        build: requirements/wordpress/
+        build: "./requirements/wordpress/"
         restart: always
         volumes:
-            - data:/var/www/html
+            - wp:/var/www/html
         expose:
             - "9000"
         env_file:
@@ -29,20 +29,33 @@ services:
             - mariadb
     nginx:
         container_name: nginx
-        build: requirements/nginx/
+        build: "./requirements/nginx/"
         restart: always
         ports:
             - "443:443"
         volumes:
-            - data:/var/www/html
+            - wp:/var/www/html
         networks:
             - intra
         tty: true
         depends_on:
             - wordpress
 volumes:
-    - data: /home/hekang/data
-    - db: /home/hekang/db
+  wp:
+    # driver: local
+    # driver_opts:
+    #   type: 'none'
+    #   o: 'bind'
+    # #   device: '/home/hekang/data/wp'
+    #   device: '/Users/hekang/Desktop/Inception/wp'
+  db:
+    # driver: local
+    # driver_opts:
+    #   type: 'none'
+    #   o: 'bind'
+    # #   device: '/home/hekang/data/db'
+    #   device: '/Users/hekang/Desktop/Inception/db'
+
 networks:
     intra:
         driver: bridge
