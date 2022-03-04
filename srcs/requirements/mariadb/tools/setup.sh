@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#if [ ! -e /etc/mysql/mariadb.conf.d/50-server.cnf ]; then
+if [ ! -e /etc/mysql/mariadb.conf.d/50-server.cnf ]; then
 	chmod 755 /var/lib/mysql
 	chown -R mysql:mysql /var/lib/mysql
 	cp tmp/50-server.cnf			/etc/mysql/mariadb.conf.d/50-server.cnf
@@ -12,5 +12,5 @@
 	mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO '$MYSQL_USER'@'%';"
 	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 	mysqladmin -uroot -p$DB_ROOT_PW shutdown
-#fi
+fi
 exec mysqld_safe
