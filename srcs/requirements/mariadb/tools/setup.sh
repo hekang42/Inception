@@ -1,14 +1,16 @@
 #!/bin/bash
 
-chmod 755 /var/lib/mysql
-chown -R mysql:mysql /var/lib/mysql
-cp tmp/50-server.cnf			/etc/mysql/mariadb.conf.d/50-server.cnf
+#if [ ! -e /etc/mysql/mariadb.conf.d/50-server.cnf ]; then
+	chmod 755 /var/lib/mysql
+	chown -R mysql:mysql /var/lib/mysql
+	cp tmp/50-server.cnf			/etc/mysql/mariadb.conf.d/50-server.cnf
 
-mysql_install_db --user=mysql --datadir=/var/lib/mysql
-service mysql start
-mysql -e "CREATE DATABASE wordpress;"
-mysql -e "CREATE USER 'hekang'@'%' IDENTIFIED BY '1234'";
-mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'hekang'@'%';"
-
-service mysql stop
+	mysql_install_db --user=mysql --datadir=/var/lib/mysql
+	service mysql start
+	mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
+	mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'";
+	mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO '$MYSQL_USER'@'%';"
+	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
+	mysqladmin -uroot -p$DB_ROOT_PW shutdown
+#fi
 exec mysqld_safe

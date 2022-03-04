@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep 5;
+sleep 10;
 if [ ! -e /var/www/html/wp-config.php ]; then
 
 	# mkdir -p /var/www/html 
