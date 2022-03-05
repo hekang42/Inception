@@ -7,10 +7,10 @@ if [ -e /tmp/50-server.cnf ]; then
 
 	mysql_install_db --user=mysql --datadir=/var/lib/mysql
 	service mysql start
-	mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;"
-	mysql -e "CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD'";
-	mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO '$MYSQL_USER'@'%';"
-	mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
-	mysqladmin -uroot -p$DB_ROOT_PW shutdown
+	mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;\
+		CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\
+		GRANT ALL PRIVILEGES ON wordpress.* TO '$MYSQL_USER'@'%';\
+		ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD'; FLUSH PRIVILEGES;"
+	mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD shutdown
 fi
 exec mysqld_safe
