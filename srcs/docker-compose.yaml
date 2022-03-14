@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
     mariadb:
@@ -49,14 +49,16 @@ volumes:
       type: 'none'
       o: 'bind'
     #   device: '/home/hekang/data/wp'
-      device: '/Users/hekang/Desktop/Inception/wp'
+      device: '/Users/hekang/Inception/wp'
+    #   device: "data/wp_data"
   db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
     #   device: '/home/hekang/data/db'
-      device: '/Users/hekang/Desktop/Inception/db'
+      device: '/Users/hekang/Inception/db'
+    #   device: "data/db_data"
 
 networks:
     intra:
