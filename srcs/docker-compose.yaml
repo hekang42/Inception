@@ -6,7 +6,7 @@ services:
         build: "./requirements/mariadb"
         restart: always
         volumes:
-            - db:/var/mysql
+            - db:/var/lib/mysql
         env_file:
             - .env
         expose:

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ -e /tmp/50-server.cnf ]; then
-	chmod 755 /var/mysql
-	chown -R mysql:mysql /var/mysql
+if [ ! -d /var/lib/mysql/wordpress ]; then
+	chmod 755 /var/lib/mysql
+	chown -R mysql:mysql /var/lib/mysql
 	mv tmp/50-server.cnf			/etc/mysql/mariadb.conf.d/50-server.cnf
 
-	mysql_install_db --user=mysql --datadir=/var/mysql
+	mysql_install_db --user=mysql --datadir=/var/lib/mysql
 	service mysql start
 	mysql -e "CREATE DATABASE IF NOT EXISTS wordpress;\
 		CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';\

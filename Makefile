@@ -1,25 +1,27 @@
 NAME = inception
 DB=/Users/hekang/Inception/db
 WP=/Users/hekang/Inception/wp
+COMPOSE=docker-compose -p inception -f srcs/docker-compose.yaml
 
-all: clean build
-
-build:
+all: clean
 	mkdir -p $(DB)
 	mkdir -p $(WP)
-	cd ./srcs/ && docker-compose up -d;
+	$(COMPOSE) up -d;
 
-stop:
-	cd ./srcs/ && docker-compose down;
+up:
+	$(COMPOSE) up -d;
+
+down:
+	$(COMPOSE) down;
 
 volrm:
-	cd ./srcs/ && docker volume prune;
+	docker volume prune;
 
-clean: stop
-	cd ./srcs/ && docker system prune -a;
+clean: down
+	docker system prune -a;
 
 fclean: clean
 	rm -rf $(WP)
 	rm -rf $(DB)
 
-.PHONY: setup build stop volrm clean fclean all
+.PHONY: up down volrm clean fclean all
