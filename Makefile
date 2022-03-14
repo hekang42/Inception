@@ -3,10 +3,13 @@ DB=/Users/hekang/Inception/db
 WP=/Users/hekang/Inception/wp
 COMPOSE=docker-compose -p inception -f srcs/docker-compose.yaml
 
-all: clean
-	mkdir -p $(DB)
-	mkdir -p $(WP)
-	$(COMPOSE) up -d;
+all: build up
+
+build: 
+	$(COMPOSE) build;
+
+fbuild: 
+	$(COMPOSE) build --no-cache
 
 up:
 	$(COMPOSE) up -d;
@@ -24,4 +27,4 @@ fclean: clean
 	rm -rf $(WP)
 	rm -rf $(DB)
 
-.PHONY: up down volrm clean fclean all
+.PHONY: up down build fbuild volrm clean fclean all
