@@ -1,11 +1,11 @@
 NAME = inception
-DB=/Users/hekang/Inception/db
-WP=/Users/hekang/Inception/wp
-COMPOSE=docker-compose -p inception -f srcs/docker-compose.yaml
+DB=~/data/wp
+WP=~/data/db
+COMPOSE=docker-compose -p inception -f srcs/docker-compose.yml
 
 all: build up
 
-build: 
+build: local
 	$(COMPOSE) build;
 
 fbuild: 
@@ -24,7 +24,10 @@ clean: down
 	docker system prune -a;
 
 fclean: clean
-	rm -rf $(WP)
-	rm -rf $(DB)
+	sudo rm ~/data
 
-.PHONY: up down build fbuild volrm clean fclean all
+local:
+	mkdir -p ~/data/wp
+	mkdir -p ~/data/db
+
+.PHONY: up down build fbuild volrm clean fclean all local

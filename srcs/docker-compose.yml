@@ -48,17 +48,15 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-    #   device: '/home/hekang/data/wp'
-      device: '/Users/hekang/Inception/wp'
-    #   device: "data/wp_data"
+    #   device: '/Users/hekang/Inception/wp'
+    device: "data/wp"
   db:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-    #   device: '/home/hekang/data/db'
-      device: '/Users/hekang/Inception/db'
-    #   device: "data/db_data"
+    #   device: '/Users/hekang/Inception/db'
+    device: "data/db"
 
 networks:
     intra:
