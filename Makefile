@@ -24,7 +24,7 @@ clean: down
 	docker system prune -a;
 
 fclean: clean
-	sudo rm ~/data
+	sudo rm -rf ~/data
 
 local:
 	mkdir -p ~/data/wp
