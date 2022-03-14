@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
     mariadb:
@@ -44,19 +44,19 @@ services:
             - wordpress
 volumes:
   wp:
-    # driver: local
-    # driver_opts:
-    #   type: 'none'
-    #   o: 'bind'
-    # #   device: '/home/hekang/data/wp'
-    #   device: '/Users/hekang/Desktop/Inception/wp'
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+    #   device: '/home/hekang/data/wp'
+      device: '/Users/hekang/Desktop/Inception/wp'
   db:
-    # driver: local
-    # driver_opts:
-    #   type: 'none'
-    #   o: 'bind'
-    # #   device: '/home/hekang/data/db'
-    #   device: '/Users/hekang/Desktop/Inception/db'
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+    #   device: '/home/hekang/data/db'
+      device: '/Users/hekang/Desktop/Inception/db'
 
 networks:
     intra:
